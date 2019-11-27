@@ -1,5 +1,5 @@
 import React from "react";
-import "./HomePage.css";
+import "./LikedGifs.css";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -14,5 +14,5 @@ const AllLikedGifs = ({ likedGifs }) => (
   </ul>
 );
 
-const HomePage = connect(mapStateToProps)(AllLikedGifs);
-export default HomePage;
+const LikedGifs = connect(mapStateToProps)(AllLikedGifs);
+export default LikedGifs;

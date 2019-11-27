@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
-import HomePage from "../HomePage/HomePage";
+import HomeWrapper from "../HomeWrapper/HomeWrapper";
+import Header from "../Header/Header";
 import { connect } from "react-redux";
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      <Header />
+      <HomeWrapper />
     </div>
   );
 }
