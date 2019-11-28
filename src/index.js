@@ -8,11 +8,10 @@ import rootReducer from "./Reducers/rootReducer.js";
 import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
 
-import { AddGif } from "./Actions/rootActions";
-
-const store = createStore(rootReducer);
-window.store = store; // Debug Lines
-window.AddGif = AddGif;
+const middlewares = [thunkMiddleware];
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
+// window.store = store; // Debug Lines
+// window.AddGif = AddGif;
 ReactDOM.render(
   <Provider store={store}>
     <App />

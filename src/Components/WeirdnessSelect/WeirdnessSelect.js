@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+
 import "./WeirdnessSelect.css";
+import RangeSlider from "../RangeSlider/RangeSlider";
+
 import { connect } from "react-redux";
 import { AddGif } from "../../Actions/rootActions";
 
@@ -31,7 +34,7 @@ class WeirdnessSelect extends Component {
   render() {
     const { gifTitle } = this.state;
     return (
-      <div>
+      <div id="leftBackground">
         <div>
           <p>
             Find out how weird you are by selecting the GIFs that make you
@@ -58,6 +61,8 @@ class WeirdnessSelect extends Component {
             <button type="submit">SAVE</button>
           </form>
         </div>
+        <RangeSlider />{" "}
+        {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
       </div>
     );
   }

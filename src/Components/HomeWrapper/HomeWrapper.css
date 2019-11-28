@@ -2,5 +2,4 @@
   display: grid;
   text-align: left;
   grid-template-columns: 9fr 8fr;
-  margin: 50px;
 }

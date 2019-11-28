@@ -1,7 +1,9 @@
 import { ADD_GIF } from "../Constants/rootActions";
 
 const initialState = {
-  likedGifs: []
+  likedGifs: [],
+  allGifs: [],
+  loading: false
 };
 
 function rootReducer(state = initialState, action) {
