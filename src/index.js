@@ -11,7 +11,8 @@ import { Provider } from "react-redux";
 import { AddGif } from "./Actions/rootActions";
 
 const store = createStore(rootReducer);
-
+window.store = store; // Debug Lines
+window.AddGif = AddGif;
 ReactDOM.render(
   <Provider store={store}>
     <App />

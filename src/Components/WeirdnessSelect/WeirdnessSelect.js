@@ -15,23 +15,21 @@ class WeirdnessSelect extends Component {
     this.state = {
       gifTitle: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleGifSubmit = this.handleGifSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
-  }
+  };
 
-  handleGifSubmit(event) {
+  handleGifSubmit = event => {
     event.preventDefault(event);
-    const { title } = this.state;
-    this.props.AddGif({ title });
-    this.setState({ title: "" });
-  }
+    const { gifTitle } = this.state;
+    this.props.AddGif({ title: gifTitle, id: 1 });
+    this.setState({ gifTitle: "" });
+  };
 
   render() {
-    const { title } = this.state;
+    const { gifTitle } = this.state;
     return (
       <div>
         <div>
@@ -47,13 +45,13 @@ class WeirdnessSelect extends Component {
           </p>
         </div>
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleGifSubmit}>
             <div>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="gifTitle">Title</label>
               <input
                 type="text"
-                id="title"
-                value={title}
+                id="gifTitle"
+                value={gifTitle}
                 onChange={this.handleChange}
               />
             </div>
