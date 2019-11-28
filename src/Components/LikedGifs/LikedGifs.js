@@ -1,6 +1,7 @@
 import React from "react";
 import "./LikedGifs.css";
 import { connect } from "react-redux";
+import uuidv1 from "uuid/v1";
 
 const mapStateToProps = state => {
   return { likedGifs: state.likedGifs };
@@ -9,7 +10,7 @@ const mapStateToProps = state => {
 const AllLikedGifs = ({ likedGifs }) => (
   <ul>
     {likedGifs.map(el => (
-      <li key={el.id}>{el.title}</li>
+      <li key={uuidv1()}>{el.title}</li>
     ))}
   </ul>
 );

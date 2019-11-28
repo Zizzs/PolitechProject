@@ -24,7 +24,7 @@ class WeirdnessSelect extends Component {
   handleGifSubmit = event => {
     event.preventDefault(event);
     const { gifTitle } = this.state;
-    this.props.AddGif({ title: gifTitle, id: 1 });
+    this.props.AddGif({ title: gifTitle });
     this.setState({ gifTitle: "" });
   };
 
