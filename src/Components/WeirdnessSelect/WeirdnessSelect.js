@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "./WeirdnessSelect.css";
 import RangeSlider from "../RangeSlider/RangeSlider";
+import DotLoader from "react-spinners/DotLoader";
 
 import { connect } from "react-redux";
 import {
@@ -26,11 +27,9 @@ class WeirdnessSelect extends Component {
     };
   }
 
-  shouldComponentRender() {
-    const { loading } = this.props;
-    if (loading === false) return false;
-    return true;
-  }
+  shouldComponentRender = () => {
+    return this.state.loading;
+  };
 
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
@@ -51,14 +50,24 @@ class WeirdnessSelect extends Component {
   //   };
 
   fetchGifs = (title, weirdness) => {
-    //return () => {
     //debugger;
     fetch_gif_loading();
+    console.log(`Fetching Gif with Title: ${title} Weirdness: ${weirdness}`);
     fetch(
-      `api.giphy.com/v1/gifs/translate?api_key=a9cP17n2rj8Q3uzZyF588a0qlelTTYhT&s=${title}&weirdness=${weirdness}`
+      `https://api.giphy.com/v1/gifs/translate?api_key=a9cP17n2rj8Q3uzZyF588a0qlelTTYhT&s=${title}&weirdness=${weirdness}`
     )
-      .then(res => res.json())
       .then(res => {
+        console.log(res);
+        console.log("Converting data to JSON");
+        res = res.json();
+        console.log(res);
+        return res;
+      })
+      // .then(res => res.text())
+      // .then(text => console.log(text))
+      .then(res => {
+        console.log("The data:");
+        console.log(res);
         if (res.error) {
           console.log("Error");
           throw res.error;
@@ -76,44 +85,58 @@ class WeirdnessSelect extends Component {
       .catch(error => {
         fetch_gif_error(error);
       });
-    //};
   };
 
   render() {
     const { gifTitle } = this.state;
-    return (
-      <div id="leftBackground">
-        <div>
-          <p>
-            Find out how weird you are by selecting the GIFs that make you
-            laugh. We'll show you the least weird ones to start, but you can
-            move the slider to make them weirder.
-          </p>
-          <br />
-          <p>
-            When you find a GIF you like, press the <i>Like</i> button. Once you
-            like 5 GIFs, we'll show you how weird you are.
-          </p>
-        </div>
-        <div>
-          <form onSubmit={this.handleGifSubmit}>
-            <div>
-              <label htmlFor="gifTitle">Title</label>
-              <input
-                type="text"
-                id="gifTitle"
-                value={gifTitle}
-                onChange={this.handleChange}
-              />
+
+    if (this.shouldComponentRender()) {
+      return (
+        <DotLoader
+          css={`display: block, margin: 0 auto, border-color: red`}
+          sizeUnit={"px"}
+          size={150}
+          color={"#123abc"}
+          loading={this.state.loading}
+        />
+      );
+    } else {
+      return (
+        <div id="leftBackground">
+          <div>
+            <p>
+              Find out how weird you are by selecting the GIFs that make you
+              laugh. We'll show you the least weird ones to start, but you can
+              move the slider to make them weirder.
+            </p>
+            <br />
+            <p>
+              When you find a GIF you like, press the <i>Like</i> button. Once
+              you like 5 GIFs, we'll show you how weird you are.
+            </p>
+          </div>
+          <div>
+            <form onSubmit={this.handleGifSubmit}>
+              <div>
+                <label htmlFor="gifTitle">Title</label>
+                <input
+                  type="text"
+                  id="gifTitle"
+                  value={gifTitle}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button type="submit">SAVE</button>
+            </form>
+            <div id="shownGif">
+              <img alt="Random Gif" src={this.state.shownGif.gifURL} />
             </div>
-            <button type="submit">SAVE</button>
-          </form>
-          <img src={this.state.shownGif.gifURL} />
+          </div>
+          <RangeSlider />{" "}
+          {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
         </div>
-        <RangeSlider />{" "}
-        {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
-      </div>
-    );
+      );
+    }
   }
 }
 

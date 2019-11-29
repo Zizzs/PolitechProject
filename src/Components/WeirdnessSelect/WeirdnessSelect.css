@@ -4,3 +4,9 @@
   border-width: 2px;
   border-color: #e3e1e1;
 }
+
+#shownGif {
+  width: 250;
+  height: 250;
+  background-color: black;
+}
