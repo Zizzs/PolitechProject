@@ -1,1 +1,4 @@
 export const ADD_GIF = "ADD_GIF";
+export const FETCH_GIF_PENDING = "FETCH_GIF_PENDING";
+export const FETCH_GIF_SUCCESS = "FETCH_GIF_SUCCESS";
+export const FETCH_GIF_ERROR = "FETCH_GIF_ERROR";

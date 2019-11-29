@@ -4,11 +4,11 @@ import "./WeirdnessSelect.css";
 import RangeSlider from "../RangeSlider/RangeSlider";
 
 import { connect } from "react-redux";
-import { AddGif } from "../../Actions/rootActions";
+import { add_gif } from "../../Actions/rootActionCreator";
 
 function mapDispatchToProps(dispatch) {
   return {
-    AddGif: gif => dispatch(AddGif(gif))
+    add_gif: gif => dispatch(add_gif(gif))
   };
 }
 
@@ -27,7 +27,7 @@ class WeirdnessSelect extends Component {
   handleGifSubmit = event => {
     event.preventDefault(event);
     const { gifTitle } = this.state;
-    this.props.AddGif({ title: gifTitle });
+    this.props.add_gif({ title: gifTitle });
     this.setState({ gifTitle: "" });
   };
 
