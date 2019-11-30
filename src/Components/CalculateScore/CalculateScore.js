@@ -51,6 +51,7 @@ class CalculateScore extends Component {
         );
     }
 }
+
 const mapStateToProps = state => {
     return { likedGifs: state.likedGifs };
 };

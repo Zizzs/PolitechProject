@@ -7,7 +7,7 @@ import RangeSlider from "../RangeSlider/RangeSlider";
 import RotateLoader from "react-spinners/RotateLoader";
 
 import { getGif, getGifError, getGifPending, getLikedGifs } from '../../Reducers/rootReducer';
-import { add_gif } from "../../Actions/rootActionCreator";
+import { add_gif, clear_state } from "../../Actions/rootActionCreator";
 import fetchGifAction from '../../GiphyAPI';
 
 
@@ -21,9 +21,12 @@ class WeirdnessSelect extends Component {
       gifHasSearchedTerm: ""
     };
   }
+  componentWillMount() {
+    this.handleClearState();
+  }
 
-  componentDidMount() {
-    console.log("Mounted");
+  handleClearState = () => {
+    this.props.clear_state();
   }
 
   handleChange = event => {
@@ -124,8 +127,9 @@ class WeirdnessSelect extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchGif: fetchGifAction,
-  add_gif: add_gif
-}, dispatch)
+  add_gif: add_gif,
+  clear_state: clear_state
+}, dispatch);
 
 const mapStateToProps = state => ({
   likedGifs: getLikedGifs(state),

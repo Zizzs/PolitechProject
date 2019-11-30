@@ -1,4 +1,4 @@
-import { ADD_GIF, REMOVE_GIF, FETCH_GIF_LOADING, FETCH_GIF_SUCCESS, FETCH_GIF_ERROR } from "../Constants/rootActions";
+import { ADD_GIF, REMOVE_GIF, FETCH_GIF_LOADING, FETCH_GIF_SUCCESS, FETCH_GIF_ERROR, CLEAR_STATE } from "../Constants/rootActions";
 
 const initialState = {
   likedGifs: [],
@@ -45,6 +45,10 @@ export function gifsReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.error
+      };
+    case CLEAR_STATE:
+      return {
+        ...initialState
       };
 
     default:
