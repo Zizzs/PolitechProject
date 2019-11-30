@@ -45,5 +45,6 @@ export function gifsReducer(state = initialState, action) {
 }
 
 export const getGif = state => state.shownGif;
+export const getLikedGifs = state => state.likedGifs;
 export const getGifPending = state => state.loading;
 export const getGifError = state => state.error;

@@ -2,4 +2,11 @@
   border-style: solid;
   border-width: 2px;
   border-color: #e3e1e1;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+#calculateScoreDiv {
+  margin-top: 15px;
+  text-align:center;
 }

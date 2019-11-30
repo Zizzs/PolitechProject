@@ -6,8 +6,8 @@ import RotateLoader from "react-spinners/RotateLoader";
 
 import { connect } from "react-redux";
 import { getGif, getGifError, getGifPending } from '../../Reducers/rootReducer';
-import fetchGifAction from '../../GiphyAPI';
 import { add_gif } from "../../Actions/rootActionCreator";
+import fetchGifAction from '../../GiphyAPI';
 import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
 
 class WeirdnessSelect extends Component {
@@ -20,7 +20,7 @@ class WeirdnessSelect extends Component {
   }
 
   componentDidUpdate() {
-    //{ console.log(this.props) }
+    console.log(this.props);
   }
 
   shouldComponentRender = () => {
@@ -43,14 +43,12 @@ class WeirdnessSelect extends Component {
     fetchGif(gifTitle, gifWeirdness);
   };
 
-  //   handleGifSubmit = event => {
-  //     event.preventDefault(event);
-  //     const { gifTitle } = this.state;
-  //     this.props.add_gif({ title: gifTitle });
-  //     this.setState({ gifTitle: "" });
-  //   };
+  handleLikedGif = () => {
+    console.log(this.props);
+    const { add_gif, shownGif } = this.props;
+    add_gif(shownGif);
 
-
+  };
 
   render() {
     const { gifTitle } = this.state;
@@ -82,23 +80,24 @@ class WeirdnessSelect extends Component {
           </div>
           <div>
             <form onSubmit={this.handleGifSubmit}>
-              <div>
-                <label htmlFor="gifTitle">Title</label>
-                <input
-                  type="text"
-                  id="gifTitle"
-                  value={gifTitle}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <button type="submit">SAVE</button>
+
+              <label htmlFor="gifTitle">Search Term</label>
+              <input
+                type="text"
+                id="gifTitle"
+                value={gifTitle}
+                onChange={this.handleChange}
+              />
+
+              <button id="submitButton" type="submit">Search</button>
             </form>
           </div>
-          <RangeSlider handleSliderChange={this.handleSliderChange} />
-          <div>
+          <div id="shownGifDiv">
             <p>{this.props.shownGif.gifTitle}</p>
-            <img id="shownGif" alt="Random Gif" src={this.props.shownGif.gifURL} />
+            <img alt="" src={this.props.shownGif.gifURL} height={250} /><br />
+            <button onClick={this.handleLikedGif}>Like</button>
           </div>
+          <RangeSlider handleSliderChange={this.handleSliderChange} />
           {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
         </div>
       );
@@ -114,7 +113,8 @@ class WeirdnessSelect extends Component {
 // }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchGif: fetchGifAction
+  fetchGif: fetchGifAction,
+  add_gif: add_gif
 }, dispatch)
 
 const mapStateToProps = state => ({

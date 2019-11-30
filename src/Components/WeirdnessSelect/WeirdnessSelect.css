@@ -3,9 +3,17 @@
   border-style: solid;
   border-width: 2px;
   border-color: #e3e1e1;
+  max-height: 500px;
 }
 
-#shownGif {
-  height: 150;
-  background-color: black;
+#gifTitle {
+  margin-left: 15px;
+}
+
+#submitButton {
+  margin-left: 15px;
+}
+
+#shownGifDiv {
+  text-align: center;
 }
