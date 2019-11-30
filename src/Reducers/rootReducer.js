@@ -29,10 +29,7 @@ export function gifsReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        shownGif: {
-          gifURL: action.payload.giphyURL,
-          gifWeirdness: action.payload.giphyWeirdness
-        }
+        shownGif: action.payload
       };
     case FETCH_GIF_ERROR:
       return {

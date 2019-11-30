@@ -28,12 +28,16 @@ const fetchGif = (title, weirdness) => {
                 }
                 console.log("No Error.");
                 dispatch(fetch_gif_success({
-                    giphyURL: res.data.images.original.url,
-                    giphyWeirdness: this.state.gifWeirdness
+
+                    gifURL: res.data.images.original.url,
+                    gifWeirdness: weirdness
+
                 }));
                 return {
-                    giphyURL: res.data.images.original.url,
-                    giphyWeirdness: this.state.gifWeirdness
+                    shownGif: {
+                        gifURL: res.data.images.original.url,
+                        gifWeirdness: weirdness
+                    }
                 };
             })
             .catch(error => {

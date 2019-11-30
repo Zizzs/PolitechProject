@@ -19,6 +19,9 @@ class WeirdnessSelect extends Component {
     };
   }
 
+  componentDidUpdate() {
+    { console.log(this.props) }
+  }
   shouldComponentRender = () => {
     return this.props.loading;
   };
