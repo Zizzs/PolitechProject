@@ -13,7 +13,7 @@ const initialState = {
   error: null
 };
 
-function gifsReducer(state = initialState, action) {
+export function gifsReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_GIF:
       return Object.assign({}, state, {
@@ -26,13 +26,14 @@ function gifsReducer(state = initialState, action) {
         loading: true
       };
     case FETCH_GIF_SUCCESS:
-      return Object.assign({}, state, {
+      return {
         ...state,
+        loading: false,
         shownGif: {
           gifURL: action.payload.giphyURL,
           gifWeirdness: action.payload.giphyWeirdness
         }
-      });
+      };
     case FETCH_GIF_ERROR:
       return {
         ...state,
@@ -45,4 +46,6 @@ function gifsReducer(state = initialState, action) {
   }
 }
 
-export default gifsReducer;
+export const getGif = state => state.shownGif;
+export const getGifPending = state => state.loading;
+export const getGifError = state => state.error;

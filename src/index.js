@@ -4,7 +4,7 @@ import App from "./Components/App/App.js";
 import * as serviceWorker from "./serviceWorker";
 
 import { createStore, applyMiddleware } from "redux";
-import gifsReducer from "./Reducers/rootReducer.js";
+import { gifsReducer } from "./Reducers/rootReducer.js";
 import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
 
