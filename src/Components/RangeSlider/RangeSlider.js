@@ -12,9 +12,13 @@ class RangeSlider extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      value: this.props.shownGifWeirdnessValue
-    })
+    if (this.props.shownGifWeirdnessValue > 0) {
+      this.setState({
+        value: this.props.shownGifWeirdnessValue
+      })
+    } else {
+      this.setState({ vale: this.state.value });
+    }
   }
 
   handleChange = value => {

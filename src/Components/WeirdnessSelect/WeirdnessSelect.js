@@ -47,7 +47,7 @@ class WeirdnessSelect extends Component {
 
   handleLikedGif = () => {
     const { add_gif, shownGif } = this.props;
-    if (this.props.likedGifs.length === 0) {
+    if (this.props.likedGifs.length === 0 && this.props.shownGif.gifTitle.length !== 0) {
       add_gif(shownGif);
     } else {
       let containsSearchTerm = false;
@@ -62,7 +62,7 @@ class WeirdnessSelect extends Component {
         this.setState({ gifHasSearchedTerm: `You have already liked 5 gifs... Unlike one, or calculate your score!` });
       }
 
-      if (!containsSearchTerm && this.props.likedGifs.length < 5) {
+      if (!containsSearchTerm && this.props.likedGifs.length < 5 && this.props.shownGif.gifTitle.length !== 0) {
         add_gif(shownGif);
       }
     }
@@ -114,7 +114,7 @@ class WeirdnessSelect extends Component {
           </div>
           <div id="shownGifDiv">
             <p>{this.props.shownGif.gifTitle}</p>
-            <img alt="" src={this.props.shownGif.gifURL} height={250} /><br />
+            <img id="shownImage" alt="" src={this.props.shownGif.gifURL} height={250} /><br />
             <button id="likeButton" onClick={this.handleLikedGif}>Like</button>
             <p>{this.state.gifHasSearchedTerm}</p>
           </div>
