@@ -6,7 +6,7 @@ const initialState = {
     gifURL: "",
     gifWeirdness: 0,
     gifTitle: "",
-    gifID: ""
+    gifSearchTerm: ""
   },
   loading: false,
   error: null

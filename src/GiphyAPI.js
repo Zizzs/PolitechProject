@@ -31,7 +31,8 @@ const fetchGif = (title, weirdness) => {
 
                     gifURL: res.data.images.original.url,
                     gifTitle: res.data.title,
-                    gifWeirdness: weirdness
+                    gifWeirdness: weirdness,
+                    gifSearchTerm: title
 
                 }));
                 return {

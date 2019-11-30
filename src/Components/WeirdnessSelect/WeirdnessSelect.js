@@ -18,6 +18,8 @@ class WeirdnessSelect extends Component {
     this.state = {
       gifTitle: "",
       gifWeirdness: 0,
+      gifPreviousLikedTerms: "",
+      gifHasSearchedTerm: ""
     };
   }
 
@@ -30,7 +32,7 @@ class WeirdnessSelect extends Component {
   };
 
   handleChange = event => {
-    this.setState({ [event.target.id]: event.target.value });
+    this.setState({ gifHasSearchedTerm: "", [event.target.id]: event.target.value });
   };
 
   handleSliderChange = value => {
@@ -39,6 +41,7 @@ class WeirdnessSelect extends Component {
 
   handleGifSubmit = event => {
     event.preventDefault(event);
+    this.setState({ gifHasSearchedTerm: "" });
     const { gifTitle, gifWeirdness } = this.state;
     const { fetchGif } = this.props
     console.log("Starting fetch");
@@ -47,10 +50,27 @@ class WeirdnessSelect extends Component {
 
   handleLikedGif = () => {
     const { add_gif, shownGif } = this.props;
-    shownGif.gifId = uuidv1();
-    if (!this.props.likedGifs.includes(shownGif)) {
+    //this.setState({ gifPreviousLikedTerm: shownGif.gifSearchTerm });
+    //if (this.state.gifTitle === shownGif.gifSearchTerm)
+    if (this.props.likedGifs.length === 0) {
       add_gif(shownGif);
+    } else {
+      let containsSearchTerm = false;
+      for (let gif of this.props.likedGifs) {
+        if (gif.gifSearchTerm === shownGif.gifSearchTerm) {
+          containsSearchTerm = true;
+          this.setState({ gifHasSearchedTerm: `You have already liked a ${shownGif.gifSearchTerm} gif... try another term!` });
+        }
+      }
+
+      if (!containsSearchTerm) {
+        add_gif(shownGif);
+      }
     }
+
+    // if (!this.props.likedGifs.includes(shownGif)) {
+    //   add_gif(shownGif);
+    // }
   };
 
   render() {
@@ -99,6 +119,7 @@ class WeirdnessSelect extends Component {
             <p>{this.props.shownGif.gifTitle}</p>
             <img alt="" src={this.props.shownGif.gifURL} height={250} /><br />
             <button id="likeButton" onClick={this.handleLikedGif}>Like</button>
+            <p>{this.state.gifHasSearchedTerm}</p>
           </div>
           <RangeSlider handleSliderChange={this.handleSliderChange} />
           {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
