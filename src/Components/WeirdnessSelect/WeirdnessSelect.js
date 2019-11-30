@@ -22,10 +22,6 @@ class WeirdnessSelect extends Component {
     };
   }
 
-  componentDidUpdate() {
-    console.log(this.props); // Debug function, will remove when finished
-  }
-
   handleChange = event => {
     this.setState({ gifHasSearchedTerm: "", [event.target.id]: event.target.value });
   };
@@ -39,7 +35,6 @@ class WeirdnessSelect extends Component {
     this.setState({ gifHasSearchedTerm: "" });
     const { gifTitle, gifWeirdness } = this.state;
     const { fetchGif } = this.props;
-    console.log("Starting fetch"); // Debug Log, will remove when finished
     fetchGif(gifTitle, gifWeirdness);
   };
 
@@ -113,7 +108,6 @@ class WeirdnessSelect extends Component {
             <p>{this.state.gifHasSearchedTerm}</p>
           </div>
           <RangeSlider handleSliderChange={this.handleSliderChange} />
-          {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
         </div>
       );
     }

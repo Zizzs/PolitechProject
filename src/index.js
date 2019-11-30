@@ -10,8 +10,7 @@ import { Provider } from "react-redux";
 
 const middlewares = [thunkMiddleware];
 const store = createStore(gifsReducer, applyMiddleware(...middlewares));
-// window.store = store; // Debug Lines
-// window.AddGif = AddGif;
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

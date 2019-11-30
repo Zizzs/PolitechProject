@@ -20,10 +20,15 @@ export function gifsReducer(state = initialState, action) {
         likedGifs: state.likedGifs.concat(action.payload)
       });
     case REMOVE_GIF:
-      return {
-        ...state,
-        likedGifs: state.likedGifs.filter(item => item !== state[action.payload])
+      let tempState = { ...state };
+      let index;
+      for (let gif of tempState.likedGifs) {
+        if (gif.gifSearchTerm === action.payload) {
+          index = tempState.likedGifs.indexOf(gif);
+        }
       }
+      tempState.likedGifs.splice(index, 1);
+      return tempState;
     case FETCH_GIF_LOADING:
       return {
         ...state,

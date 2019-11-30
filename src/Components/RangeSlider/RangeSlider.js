@@ -10,19 +10,11 @@ class RangeSlider extends Component {
     };
   }
 
-  handleChangeStart = () => {
-    //console.log("Change event started");
-  };
-
   handleChange = value => {
     this.setState({
       value: value
     });
     this.props.handleSliderChange(value);
-  };
-
-  handleChangeComplete = () => {
-    //console.log("Change event completed");
   };
 
   render() {
