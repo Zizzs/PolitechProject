@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "./WeirdnessSelect.css";
 import RangeSlider from "../RangeSlider/RangeSlider";
-import DotLoader from "react-spinners/DotLoader";
+import RotateLoader from "react-spinners/RotateLoader";
 
 import { connect } from "react-redux";
 import { getGif, getGifError, getGifPending } from '../../Reducers/rootReducer';
@@ -16,16 +16,11 @@ class WeirdnessSelect extends Component {
     this.state = {
       gifTitle: "",
       gifWeirdness: 0,
-      shownGif: {
-        gifURL: "",
-        gifWeirdness: 0
-      },
-      error: null
     };
   }
 
   shouldComponentRender = () => {
-    return this.state.loading;
+    return this.props.loading;
   };
 
   handleChange = event => {
@@ -54,10 +49,10 @@ class WeirdnessSelect extends Component {
 
     if (this.shouldComponentRender()) {
       return (
-        <DotLoader
+        <RotateLoader
           css={`display: block, margin: 0 auto, border-color: red`}
           sizeUnit={"px"}
-          size={150}
+          size={10}
           color={"#123abc"}
           loading={this.state.loading}
         />
