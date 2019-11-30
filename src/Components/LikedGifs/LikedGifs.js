@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { remove_gif } from "../../Actions/rootActionCreator"
+import { NavLink } from "react-router-dom";
 
 class AllLikedGifs extends Component {
 
@@ -32,7 +33,7 @@ class AllLikedGifs extends Component {
             ))}
         </div>
         <div id="calculateScoreDiv">
-          <button>Calculate Score</button>
+          <NavLink to="/results"><button>Calculate Score</button></NavLink>
           <p>You must <i>like</i> {5 - this.props.likedGifs.length} more gifs to calculate score.</p>
         </div>
       </div >

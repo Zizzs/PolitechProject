@@ -1,0 +1,5 @@
+#calculateScoreDiv {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 5fr 2fr 2fr;
+}
