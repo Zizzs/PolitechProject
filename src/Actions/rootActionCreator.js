@@ -1,10 +1,11 @@
-import { ADD_GIF } from "../Constants/rootActions";
-import { FETCH_GIF_LOADING } from "../Constants/rootActions";
-import { FETCH_GIF_SUCCESS } from "../Constants/rootActions";
-import { FETCH_GIF_ERROR } from "../Constants/rootActions";
+import { ADD_GIF, REMOVE_GIF, FETCH_GIF_LOADING, FETCH_GIF_SUCCESS, FETCH_GIF_ERROR } from "../Constants/rootActions";
 
 export function add_gif(payload) {
   return { type: ADD_GIF, payload }
+}
+
+export function remove_gif(payload) {
+  return { type: REMOVE_GIF, payload }
 }
 
 export function fetch_gif_loading() {

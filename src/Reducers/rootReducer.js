@@ -1,14 +1,12 @@
-import { ADD_GIF } from "../Constants/rootActions";
-import { FETCH_GIF_LOADING } from "../Constants/rootActions";
-import { FETCH_GIF_SUCCESS } from "../Constants/rootActions";
-import { FETCH_GIF_ERROR } from "../Constants/rootActions";
+import { ADD_GIF, REMOVE_GIF, FETCH_GIF_LOADING, FETCH_GIF_SUCCESS, FETCH_GIF_ERROR } from "../Constants/rootActions";
 
 const initialState = {
   likedGifs: [],
   shownGif: {
     gifURL: "",
     gifWeirdness: 0,
-    gifTitle: ""
+    gifTitle: "",
+    gifID: ""
   },
   loading: false,
   error: null
@@ -21,6 +19,11 @@ export function gifsReducer(state = initialState, action) {
         ...state,
         likedGifs: state.likedGifs.concat(action.payload)
       });
+    case REMOVE_GIF:
+      return {
+        ...state,
+        likedGifs: state.likedGifs.filter(item => item !== state[action.payload])
+      }
     case FETCH_GIF_LOADING:
       return {
         ...state,

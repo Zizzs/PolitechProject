@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 
-import "./WeirdnessSelect.css";
 import RangeSlider from "../RangeSlider/RangeSlider";
 import RotateLoader from "react-spinners/RotateLoader";
 
+import "./WeirdnessSelect.css";
+
 import { connect } from "react-redux";
-import { getGif, getGifError, getGifPending } from '../../Reducers/rootReducer';
+import { getGif, getGifError, getGifPending, getLikedGifs } from '../../Reducers/rootReducer';
 import { add_gif } from "../../Actions/rootActionCreator";
 import fetchGifAction from '../../GiphyAPI';
+import uuidv1 from "uuid/v1";
 import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
 
 class WeirdnessSelect extends Component {
@@ -44,10 +46,11 @@ class WeirdnessSelect extends Component {
   };
 
   handleLikedGif = () => {
-    console.log(this.props);
     const { add_gif, shownGif } = this.props;
-    add_gif(shownGif);
-
+    shownGif.gifId = uuidv1();
+    if (!this.props.likedGifs.includes(shownGif)) {
+      add_gif(shownGif);
+    }
   };
 
   render() {
@@ -105,19 +108,13 @@ class WeirdnessSelect extends Component {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     add_gif: gif => dispatch(add_gif(gif)),
-//     fetchGif: (title, weirdness) => dispatch(fetchGif(title, weirdness))
-//   };
-// }
-
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchGif: fetchGifAction,
   add_gif: add_gif
 }, dispatch)
 
 const mapStateToProps = state => ({
+  likedGifs: getLikedGifs(state),
   error: getGifError(state),
   shownGif: getGif(state),
   loading: getGifPending(state)

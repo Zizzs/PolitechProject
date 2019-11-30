@@ -1,25 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import "./LikedGifs.css";
 import { connect } from "react-redux";
 import uuidv1 from "uuid/v1";
+import { remove_gif } from "../../Actions/rootActionCreator"
+import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+
+class AllLikedGifs extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleRemoveGif = (event, index) => {
+    //event.preventDefault(event);
+    console.log(`Removing Gif at index: ${index}`);
+    console.log(this.props.likedGifs);
+    const { remove_gif } = this.props;
+    remove_gif(index);
+  }
+  render() {
+    return (
+      < div id="rightBackground" >
+        <div id="likedGifGrid">
+          {this.props.likedGifs.map(el => (
+            <div key={uuidv1()}><p id="gifListTitle">Title: {el.gifTitle}</p><p>Weirdness: {el.gifWeirdness}</p> <img alt="" src={el.gifURL} height={100} /> <button onClick={(event) => this.handleRemoveGif(event, el.gifId)} id="unlikeButton">X</button></div>
+          ))}
+        </div>
+        <div id="calculateScoreDiv">
+          <button>Calculate Score</button>
+          <p>You must <i>like</i> {5 - this.props.likedGifs.length} more gifs to calculate score.</p>
+        </div>
+      </div >
+    )
+  }
+};
 
 const mapStateToProps = state => {
   return { likedGifs: state.likedGifs };
 };
 
-const AllLikedGifs = ({ likedGifs }) => (
-  <div id="rightBackground">
-    <div id="likedGifGrid">
-      {likedGifs.map(el => (
-        <div key={uuidv1()}><p>Title: {el.gifTitle} | Weirdness: {el.gifWeirdness}</p><img src={el.gifURL} height={100} /><button id="unlikeButton">X</button></div>
-      ))}
-    </div>
-    <div id="calculateScoreDiv">
-      <button>Calculate Score</button>
-      <p>You must <i>like</i> {5 - likedGifs.length} more gifs to calculate score.</p>
-    </div>
-  </div>
-);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  remove_gif: remove_gif
+}, dispatch)
 
-const LikedGifs = connect(mapStateToProps)(AllLikedGifs);
-export default LikedGifs;
+export default AllLikedGifs = connect(mapStateToProps, mapDispatchToProps)(AllLikedGifs);

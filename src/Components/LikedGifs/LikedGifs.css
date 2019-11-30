@@ -20,8 +20,13 @@
 }
 
 #unlikeButton {
+  z-index: 5;
   display: block;
   margin-left: 143px;
   margin-top: -104px;
   margin-bottom: 80px;
+}
+
+#gifListTitle {
+  margin-bottom: -10px;
 }
