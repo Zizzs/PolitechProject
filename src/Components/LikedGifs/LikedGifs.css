@@ -3,10 +3,25 @@
   border-width: 2px;
   border-color: #e3e1e1;
   overflow-y: scroll;
-  max-height: 500px;
+  max-height: 600px;
+  height: 600px;
+  padding: 10px;
 }
 
 #calculateScoreDiv {
   margin-top: 15px;
   text-align:center;
+}
+
+#likedGifGrid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+#unlikeButton {
+  display: block;
+  margin-left: 143px;
+  margin-top: -104px;
+  margin-bottom: 80px;
 }

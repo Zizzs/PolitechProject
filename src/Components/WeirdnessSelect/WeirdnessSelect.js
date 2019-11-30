@@ -95,7 +95,7 @@ class WeirdnessSelect extends Component {
           <div id="shownGifDiv">
             <p>{this.props.shownGif.gifTitle}</p>
             <img alt="" src={this.props.shownGif.gifURL} height={250} /><br />
-            <button onClick={this.handleLikedGif}>Like</button>
+            <button id="likeButton" onClick={this.handleLikedGif}>Like</button>
           </div>
           <RangeSlider handleSliderChange={this.handleSliderChange} />
           {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}

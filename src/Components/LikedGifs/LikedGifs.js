@@ -8,13 +8,11 @@ const mapStateToProps = state => {
 };
 
 const AllLikedGifs = ({ likedGifs }) => (
-  <div>
-    <div id="rightBackground">
-      <ul>
-        {likedGifs.map(el => (
-          <li key={uuidv1()}><p>Title: {el.gifTitle} | Weirdness: {el.gifWeirdness}</p><img src={el.gifURL} height={250} /></li>
-        ))}
-      </ul>
+  <div id="rightBackground">
+    <div id="likedGifGrid">
+      {likedGifs.map(el => (
+        <div key={uuidv1()}><p>Title: {el.gifTitle} | Weirdness: {el.gifWeirdness}</p><img src={el.gifURL} height={100} /><button id="unlikeButton">X</button></div>
+      ))}
     </div>
     <div id="calculateScoreDiv">
       <button>Calculate Score</button>

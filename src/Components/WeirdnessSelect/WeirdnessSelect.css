@@ -3,11 +3,18 @@
   border-style: solid;
   border-width: 2px;
   border-color: #e3e1e1;
-  max-height: 500px;
+  max-height: 600px;
+  height: 600px;
+  padding: 10px;
 }
 
 #gifTitle {
   margin-left: 15px;
+}
+
+#likeButton {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #submitButton {
