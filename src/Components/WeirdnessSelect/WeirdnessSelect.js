@@ -118,7 +118,7 @@ class WeirdnessSelect extends Component {
             <button id="likeButton" onClick={this.handleLikedGif}>Like</button>
             <p>{this.state.gifHasSearchedTerm}</p>
           </div>
-          <RangeSlider handleSliderChange={this.handleSliderChange} />
+          <RangeSlider shownGifWeirdnessValue={this.props.shownGif.gifWeirdness} handleSliderChange={this.handleSliderChange} />
         </div>
       );
     }

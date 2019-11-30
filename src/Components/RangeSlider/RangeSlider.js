@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
+import "./RangeSlider.css";
 
 class RangeSlider extends Component {
   constructor(props, context) {
@@ -10,9 +11,15 @@ class RangeSlider extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      value: this.props.shownGifWeirdnessValue
+    })
+  }
+
   handleChange = value => {
     this.setState({
-      value: value
+      value: value,
     });
     this.props.handleSliderChange(value);
   };
@@ -29,7 +36,7 @@ class RangeSlider extends Component {
           onChange={this.handleChange}
           onChangeComplete={this.handleChangeComplete}
         />
-        <div className="value">{value}</div>
+        <div id="value">{value}</div>
       </div>
     );
   }
