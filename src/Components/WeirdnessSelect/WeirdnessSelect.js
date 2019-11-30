@@ -20,14 +20,19 @@ class WeirdnessSelect extends Component {
   }
 
   componentDidUpdate() {
-    { console.log(this.props) }
+    //{ console.log(this.props) }
   }
+
   shouldComponentRender = () => {
     return this.props.loading;
   };
 
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
+  };
+
+  handleSliderChange = value => {
+    this.setState({ ...this.state, gifWeirdness: value });
   };
 
   handleGifSubmit = event => {
@@ -88,11 +93,12 @@ class WeirdnessSelect extends Component {
               </div>
               <button type="submit">SAVE</button>
             </form>
-            <div id="shownGif">
-              <img alt="Random Gif" src={this.props.shownGif.gifURL} />
-            </div>
           </div>
-          <RangeSlider />
+          <RangeSlider handleSliderChange={this.handleSliderChange} />
+          <div>
+            <p>{this.props.shownGif.gifTitle}</p>
+            <img id="shownGif" alt="Random Gif" src={this.props.shownGif.gifURL} />
+          </div>
           {/*Normally, I would attempt to create my own range slider, but due to time constraints, I'm choosing to use a library to simplify it*/}
         </div>
       );

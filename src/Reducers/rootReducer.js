@@ -7,7 +7,8 @@ const initialState = {
   likedGifs: [],
   shownGif: {
     gifURL: "",
-    gifWeirdness: 0
+    gifWeirdness: 0,
+    gifTitle: ""
   },
   loading: false,
   error: null

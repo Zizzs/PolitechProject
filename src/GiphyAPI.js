@@ -30,6 +30,7 @@ const fetchGif = (title, weirdness) => {
                 dispatch(fetch_gif_success({
 
                     gifURL: res.data.images.original.url,
+                    gifTitle: res.data.title,
                     gifWeirdness: weirdness
 
                 }));

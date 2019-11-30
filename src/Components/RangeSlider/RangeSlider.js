@@ -18,7 +18,7 @@ class RangeSlider extends Component {
     this.setState({
       value: value
     });
-    //console.log(this.state.value);
+    this.props.handleSliderChange(value);
   };
 
   handleChangeComplete = () => {
