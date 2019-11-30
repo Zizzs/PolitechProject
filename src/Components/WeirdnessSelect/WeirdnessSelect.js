@@ -22,6 +22,10 @@ class WeirdnessSelect extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("Mounted");
+  }
+
   handleChange = event => {
     this.setState({ gifHasSearchedTerm: "", [event.target.id]: event.target.value });
   };
@@ -51,7 +55,11 @@ class WeirdnessSelect extends Component {
         }
       }
 
-      if (!containsSearchTerm) {
+      if (this.props.likedGifs.length === 5) {
+        this.setState({ gifHasSearchedTerm: `You have already liked 5 gifs... Unlike one, or calculate your score!` });
+      }
+
+      if (!containsSearchTerm && this.props.likedGifs.length < 5) {
         add_gif(shownGif);
       }
     }

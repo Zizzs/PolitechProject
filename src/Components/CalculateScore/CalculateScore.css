@@ -1,5 +1,19 @@
 #calculateScoreDiv {
     text-align: center;
     display: grid;
-    grid-template-rows: 5fr 2fr 2fr;
+    grid-template-rows: 2fr 5fr 2fr;
+    font-size: 10px;
+}
+
+#calculateGifGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#scoreText {
+    font-size: 20px;
+}
+
+#playAgainDiv {
+    margin-top: 25px;
 }
