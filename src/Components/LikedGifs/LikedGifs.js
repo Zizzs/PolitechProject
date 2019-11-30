@@ -6,9 +6,6 @@ import { remove_gif } from "../../Actions/rootActionCreator"
 import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
 
 class AllLikedGifs extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   handleRemoveGif = (event, index) => {
     //event.preventDefault(event);
@@ -17,12 +14,22 @@ class AllLikedGifs extends Component {
     const { remove_gif } = this.props;
     remove_gif(index);
   }
+
   render() {
     return (
       < div id="rightBackground" >
         <div id="likedGifGrid">
           {this.props.likedGifs.map(el => (
-            <div key={uuidv1()}><p id="gifListTitle">Title: {el.gifTitle}</p><p>Weirdness: {el.gifWeirdness}</p> <img alt="" src={el.gifURL} height={100} /> <button onClick={(event) => this.handleRemoveGif(event, el.gifId)} id="unlikeButton">X</button></div>
+            <div>
+              <div key={uuidv1()}>
+                <p id="gifListTitle">Title: {el.gifTitle}</p>
+                <p id="gifListWeirdness">Weirdness: {el.gifWeirdness}</p>
+                <p>Search Term: {el.gifSearchTerm}</p>
+                <img alt="" src={el.gifURL} height={100} /></div>
+              <div>
+                <button onClick={(event) => this.handleRemoveGif(event, el.gifId)} id="unlikeButton">X</button>
+              </div>
+            </div>
           ))}
         </div>
         <div id="calculateScoreDiv">

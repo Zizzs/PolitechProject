@@ -3,8 +3,8 @@
   border-style: solid;
   border-width: 2px;
   border-color: #e3e1e1;
-  max-height: 600px;
-  height: 600px;
+  max-height: 700px;
+  height: 700px;
   padding: 10px;
 }
 
@@ -22,5 +22,11 @@
 }
 
 #shownGifDiv {
+  text-align: center;
+}
+
+#rotateLoaderDiv {
+  margin-top: 250px;
+  display: block;
   text-align: center;
 }

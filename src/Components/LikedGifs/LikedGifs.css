@@ -2,10 +2,13 @@
   border-style: solid;
   border-width: 2px;
   border-color: #e3e1e1;
-  overflow-y: scroll;
-  max-height: 600px;
-  height: 600px;
+  max-height: 700px;
+  height: 700px;
   padding: 10px;
+  font-size: 10px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 10fr 2fr;
 }
 
 #calculateScoreDiv {
@@ -17,16 +20,19 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
+  overflow-y: scroll;
 }
 
 #unlikeButton {
-  z-index: 5;
   display: block;
-  margin-left: 143px;
-  margin-top: -104px;
-  margin-bottom: 80px;
+  margin-bottom: 15px;
+  margin-left: 135px;
 }
 
-#gifListTitle {
+#gifListTitle, #gifListWeirdness {
   margin-bottom: -10px;
+}
+
+#calculateScoreDiv {
+  margin-top: 35px;
 }

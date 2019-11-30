@@ -1,16 +1,15 @@
+import "./WeirdnessSelect.css";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import RangeSlider from "../RangeSlider/RangeSlider";
 import RotateLoader from "react-spinners/RotateLoader";
 
-import "./WeirdnessSelect.css";
-
-import { connect } from "react-redux";
 import { getGif, getGifError, getGifPending, getLikedGifs } from '../../Reducers/rootReducer';
 import { add_gif } from "../../Actions/rootActionCreator";
 import fetchGifAction from '../../GiphyAPI';
-import uuidv1 from "uuid/v1";
-import { bindActionCreators } from "../../../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+
 
 class WeirdnessSelect extends Component {
   constructor(props) {
@@ -24,34 +23,28 @@ class WeirdnessSelect extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props);
+    console.log(this.props); // Debug function, will remove when finished
   }
-
-  shouldComponentRender = () => {
-    return this.props.loading;
-  };
 
   handleChange = event => {
     this.setState({ gifHasSearchedTerm: "", [event.target.id]: event.target.value });
   };
 
   handleSliderChange = value => {
-    this.setState({ ...this.state, gifWeirdness: value });
+    this.setState({ gifWeirdness: value });
   };
 
   handleGifSubmit = event => {
     event.preventDefault(event);
     this.setState({ gifHasSearchedTerm: "" });
     const { gifTitle, gifWeirdness } = this.state;
-    const { fetchGif } = this.props
-    console.log("Starting fetch");
+    const { fetchGif } = this.props;
+    console.log("Starting fetch"); // Debug Log, will remove when finished
     fetchGif(gifTitle, gifWeirdness);
   };
 
   handleLikedGif = () => {
     const { add_gif, shownGif } = this.props;
-    //this.setState({ gifPreviousLikedTerm: shownGif.gifSearchTerm });
-    //if (this.state.gifTitle === shownGif.gifSearchTerm)
     if (this.props.likedGifs.length === 0) {
       add_gif(shownGif);
     } else {
@@ -67,24 +60,22 @@ class WeirdnessSelect extends Component {
         add_gif(shownGif);
       }
     }
-
-    // if (!this.props.likedGifs.includes(shownGif)) {
-    //   add_gif(shownGif);
-    // }
   };
 
   render() {
     const { gifTitle } = this.state;
 
-    if (this.shouldComponentRender()) {
+    if (this.props.loading) {
       return (
-        <RotateLoader
-          css={`display: block, margin: 0 auto, border-color: red`}
-          sizeUnit={"px"}
-          size={10}
-          color={"#123abc"}
-          loading={this.state.loading}
-        />
+        <div id="rotateLoaderDiv">
+          <RotateLoader
+            css={`display: block, margin: 0 auto, border-color: red`}
+            sizeUnit={"px"}
+            size={10}
+            color={"#123abc"}
+            loading={this.state.loading}
+          />
+        </div>
       );
     } else {
       return (
