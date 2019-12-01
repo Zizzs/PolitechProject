@@ -17,12 +17,12 @@ class WeirdnessSelect extends Component {
     this.state = {
       gifTitle: "",
       gifWeirdness: 0,
-      gifPreviousLikedTerms: "",
       gifHasSearchedTerm: ""
     };
   }
   componentWillMount() {
     this.handleClearState();
+    this.props.shownGif.gifWeirdness = 0;
   }
 
   handleClearState = () => {
@@ -47,6 +47,10 @@ class WeirdnessSelect extends Component {
 
   handleLikedGif = () => {
     const { add_gif, shownGif } = this.props;
+    if (shownGif.gifTitle === "") {
+      shownGif.gifTitle = this.state.gifTitle;
+    }
+    console.log(shownGif);
     if (this.props.likedGifs.length === 0 && this.props.shownGif.gifTitle.length !== 0) {
       add_gif(shownGif);
     } else {
@@ -100,7 +104,6 @@ class WeirdnessSelect extends Component {
           </div>
           <div>
             <form onSubmit={this.handleGifSubmit}>
-
               <label htmlFor="gifTitle">Search Term</label>
               <input
                 type="text"
@@ -108,7 +111,6 @@ class WeirdnessSelect extends Component {
                 value={gifTitle}
                 onChange={this.handleChange}
               />
-
               <button id="submitButton" type="submit">Search</button>
             </form>
           </div>
@@ -118,7 +120,7 @@ class WeirdnessSelect extends Component {
             <button id="likeButton" onClick={this.handleLikedGif}>Like</button>
             <p>{this.state.gifHasSearchedTerm}</p>
           </div>
-          <RangeSlider shownGifWeirdnessValue={this.props.shownGif.gifWeirdness} handleSliderChange={this.handleSliderChange} />
+          <RangeSlider likedGifsAmount={this.props.likedGifs.length} shownGifWeirdnessValue={this.props.shownGif.gifWeirdness} handleSliderChange={this.handleSliderChange} />
         </div>
       );
     }

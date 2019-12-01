@@ -11,7 +11,7 @@ class AllLikedGifs extends Component {
   handleRemoveGif = (searchTerm) => {
     const { remove_gif } = this.props;
     remove_gif(searchTerm);
-    this.forceUpdate(); // Had some issues with the component not re-rendering the change of likedGifs. Will use a forceUpdate here to quickly fix it.
+    this.forceUpdate();
   }
 
   render() {
