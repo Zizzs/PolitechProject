@@ -17,6 +17,7 @@ _The Weirdness Calculator uses React and Redux to create a quick and responsive 
 ## Support and contact details
 
 _Contact me at Zizzs17@gmail.com_
+
 _Linked In: https://www.linkedin.com/in/alexander-edward-williams/_
 
 ## Technologies Used
