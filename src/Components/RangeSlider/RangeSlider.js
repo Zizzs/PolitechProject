@@ -12,7 +12,6 @@ class RangeSlider extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.shownGifWeirdnessValue);
     if (this.props.shownGifWeirdnessValue > 0) {
       this.setState({
         value: this.props.shownGifWeirdnessValue

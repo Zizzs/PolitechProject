@@ -50,7 +50,6 @@ class WeirdnessSelect extends Component {
     if (shownGif.gifTitle === "") {
       shownGif.gifTitle = this.state.gifTitle;
     }
-    console.log(shownGif);
     if (this.props.likedGifs.length === 0 && this.props.shownGif.gifTitle.length !== 0) {
       add_gif(shownGif);
     } else {
